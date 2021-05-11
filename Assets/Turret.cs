@@ -13,6 +13,12 @@ public class Turret : MonoBehaviour
     public Transform rotateAround;
     public float rotationSpeed = 10f;
 
+    public GameObject bulletPrefab;
+    public Transform firePoint;
+
+    public float fireRate = 1f;
+    private float fireCountdown = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +38,18 @@ public class Turret : MonoBehaviour
         //Vector3 rotation = lookRotation.eulerAngles;
         Vector3 rotation = Quaternion.Lerp(rotateAround.rotation, lookRotation, Time.deltaTime * rotationSpeed).eulerAngles;
         rotateAround.rotation = Quaternion.Euler(0, rotation.y, 0);
+
+        if (fireCountdown <= 0f)
+        {
+            GameObject bulletGO = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+            Bullet bullet = bulletGO.GetComponent<Bullet>();
+            if (bullet != null)
+            {
+                bullet.Init(target);
+            }
+            fireCountdown = 1f / fireRate;
+        }
+        fireCountdown -= Time.deltaTime;
     }
 
     void UpdateTarget()

@@ -20601,6 +20601,9 @@ MonoBehaviour:
   enemyTag: Enemy
   rotateAround: {fileID: 1649664621}
   rotationSpeed: 10
+  bulletPrefab: {fileID: 1702837459473112236, guid: 12d1e24a02da7b743bd4bf94c14696ef, type: 3}
+  firePoint: {fileID: 617720464}
+  fireRate: 1
 --- !u!1001 &8848092393856131350
 PrefabInstance:
   m_ObjectHideFlags: 0
