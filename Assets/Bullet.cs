@@ -6,6 +6,12 @@ public class Bullet : MonoBehaviour
 {
     private Transform target;
     public float speed = 70f;
+    private Economy economy;
+
+    private void Start()
+    {
+        economy = GameObject.Find("GameMaster").GetComponent<Economy>();
+    }
 
     public void Init(Transform target)
     {
@@ -25,6 +31,7 @@ public class Bullet : MonoBehaviour
 
         if (dir.magnitude <= dis)
         {
+            economy.AddMoney();
             Destroy(target.gameObject);
             Destroy(gameObject);
             return;
