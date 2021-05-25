@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Enemy : MonoBehaviour
 {
@@ -35,6 +36,7 @@ public class Enemy : MonoBehaviour
         //> =
         if (wavepointIndex >= Waypoints.points.Length - 1)
         {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             Destroy(gameObject);
             return;
         }
